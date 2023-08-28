@@ -22,19 +22,6 @@ export const handleViews = (views) => {
   }
 };
 
-// export const showVideoPublishDate = (dateInfo) => {
-//   const date = new Date(dateInfo);
-
-//   const differnceInMinutes = Date.now() - date.getTime();
-
-//   const differnceInDay = Math.floor(differnceInMinutes / (1000 * 60 * 60 * 24));
-
-//   if (differnceInDay === 1) {
-//     return differnceInDay + " day ago ";
-//   } else {
-//     return differnceInDay + " days ago ";
-//   }
-// };
 
 export const showVideoPublishDate = (dataInfo) => {
   const time = new Date(dataInfo);
