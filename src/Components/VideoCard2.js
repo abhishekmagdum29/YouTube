@@ -3,7 +3,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import useChannelInfo from "../utils/useChannelInfo";
 import { Shimmer } from "./Shimmer";
 import { handleViews } from "../utils/helper";
-// import { showVideoPublishDate } from "../utils/helper";
+import { showVideoPublishDate } from "../utils/helper";
 
 const VideoCard2 = ({ info }) => {
   const { snippet } = info;
@@ -43,15 +43,15 @@ const VideoCard2 = ({ info }) => {
         </div>
 
         <div>
-          <p className="text-[#606060] ml-[62px] text-sm font-medium">
+          <p className="text-[#606060] ml-[62px] text-base ">
             {channelTitle}
           </p>
           <div className="flex">
-            <p className="text-sm font-medium text-[#606060] ml-[62px] mr-3">
+            <p className="text-sm  text-[#606060] ml-[62px] mr-3">
               {handleViews(channelInfo?.items?.[0]?.statistics?.viewCount)}{" "}
               views
             </p>
-            {/* <p className="text-sm font-medium text-[#606060]">{showVideoPublishDate(publishedAt)}</p> */}
+            <p className="text-sm  text-[#606060]">{showVideoPublishDate(publishedAt)}</p>
           </div>
         </div>
       </div>

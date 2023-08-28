@@ -39,9 +39,9 @@ const VideoCard = ({ info }) => {
         </div>
 
         <div className="">
-          <p className="text-[#606060] ml-[63px] text-sm font-medium">{channelTitle}</p>
+          <p className="text-[#606060] ml-[63px] text-base ">{channelTitle}</p>
           <div className=" ml-[63px]">
-            <span className="mr-2 text-sm font-medium text-[#606060]">
+            <span className="mr-2 text-sm  text-[#606060]">
               {handleViews(viewCount)} views
             </span>
             <span></span>

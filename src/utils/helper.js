@@ -22,16 +22,43 @@ export const handleViews = (views) => {
   }
 };
 
-export const showVideoPublishDate = (dateInfo) => {
-  const date = new Date(dateInfo);
+// export const showVideoPublishDate = (dateInfo) => {
+//   const date = new Date(dateInfo);
 
-  const differnceInMinutes = Date.now() - date.getTime();
+//   const differnceInMinutes = Date.now() - date.getTime();
 
-  const differnceInDay = Math.floor(differnceInMinutes / (1000 * 60 * 60 * 24));
+//   const differnceInDay = Math.floor(differnceInMinutes / (1000 * 60 * 60 * 24));
 
-  if (differnceInDay === 1) {
-    return differnceInDay + " day ago ";
-  } else {
-    return differnceInDay + " days ago ";
+//   if (differnceInDay === 1) {
+//     return differnceInDay + " day ago ";
+//   } else {
+//     return differnceInDay + " days ago ";
+//   }
+// };
+
+export const showVideoPublishDate = (dataInfo) => {
+  const time = new Date(dataInfo);
+
+  const d1 = time.getDate();
+  const h1 = time.getHours();
+
+  const today = new Date();
+
+  const d2 = today.getDate();
+  const h2 = today.getHours();
+
+  let d3, h3;
+
+  if (d2 === d1) {
+    h3 = h2 - h1;
+    return `${h3} hours ago`;
+  }
+  if (d2 > d1) {
+    d3 = d2 - d1;
+    if (d3 === 1) {
+      return `${d3} day ago`;
+    } else {
+      return `${d3} days ago`;
+    }
   }
 };
