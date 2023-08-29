@@ -51,13 +51,15 @@ const SearchBar = () => {
               className=" w-full h-full rounded-l-full px-12 outline-none border text-lg  focus:outline-none focus:border-sky-400 shadow-md"
             />
             {searchQuery.length > 0 && clearQuery && (
-              <RxCross1
-                className=" absolute left-[515px]  font-light text-xl cursor-pointer"
-                onClick={() => {
-                  setSearchQuery(" ");
-                  setClearQuery(false);
-                }}
-              />
+              <div className="absolute left-[510px] flex items-center justify-center w-8 h-8 hover:bg-gray-200 cursor-pointer rounded-full">
+                <RxCross1
+                  className="   font-light text-xl cursor-pointer"
+                  onClick={() => {
+                    setSearchQuery(" ");
+                    setClearQuery(false);
+                  }}
+                />
+              </div>
             )}
           </div>
 
