@@ -2,7 +2,7 @@ import React from "react";
 import { LiaThumbsUp, LiaThumbsDown } from "react-icons/lia";
 
 const Comments = ({ info }) => {
-  console.log(info);
+  if (!info) return null;
   const { snippet } = info;
   const { topLevelComment } = snippet;
 
