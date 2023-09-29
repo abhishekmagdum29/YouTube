@@ -3,6 +3,7 @@ import { LiaThumbsUp, LiaThumbsDown } from "react-icons/lia";
 
 const Comments = ({ info }) => {
   if (!info) return null;
+
   const { snippet } = info;
   const { topLevelComment } = snippet;
 
@@ -14,7 +15,7 @@ const Comments = ({ info }) => {
         alt="img"
       />
       <div className="ml-3 mt-2 ">
-        <p className="text-sm font-medium mt-5">
+        <p className="text-sm font-semibold mt-5">
           {topLevelComment?.snippet?.authorDisplayName}
         </p>
         <p className="text-sm mt-1 mb-1">

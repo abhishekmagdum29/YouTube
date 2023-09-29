@@ -17,12 +17,12 @@ const ButtonList = ({ list }) => {
     <div
       className={
         isMenuOpen
-          ? "flex justify-center mr-7 mt-1 mb-2 "
-          : "flex justify-center mt-1 mb-2"
+          ? "flex justify-center mr-5 mt-1 mb-2 "
+          : "flex justify-center mr-4 mt-1 mb-2 gap-x-[9px]"
       }
     >
       {list.map((list, i) => (
-        <>
+        <div key={i}>
           <button
             onClick={() => fecthData(list)}
             className={
@@ -31,7 +31,7 @@ const ButtonList = ({ list }) => {
           >
             {list}
           </button>
-        </>
+        </div>
       ))}
     </div>
   );

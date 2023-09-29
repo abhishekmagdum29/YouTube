@@ -14,7 +14,7 @@ const VideoCard = ({ info }) => {
 
   return (
     <div
-      className={isMenuOpen ? "w-[400px] mx-2  my-2 " : "w-[335px]  my-1 mx-2"}
+      className={isMenuOpen ? "w-[400px] mx-2  my-2  " : "w-[335px]  my-1 mx-2"}
     >
       <div className="mb-1  w-full">
         <img

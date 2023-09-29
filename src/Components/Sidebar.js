@@ -27,12 +27,12 @@ const Sidebar = () => {
   return !isMenuOpen ? (
     <SmallSidebar />
   ) : (
-    <div className="p-3 w-[216px] h-[100%]   bg-white">
+    <div className="p-3 w-[216px] h-[100%]   ">
       <ul>
         <div className=" border-b  w-[204px] ">
           <Link to={"/"}>
             <li className="flex px-3 bg-gray-100 rounded-xl  items-center text-sm font-bold h-10 cursor-pointer ">
-              <HiHome className=" text-xl mr-5" />
+              <HiHome className=" text-xl mr-5 " />
               Home
             </li>
           </Link>

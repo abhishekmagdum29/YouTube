@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 const Body = () => {
   return (
-    <div>
+    <div >
       <Header />
       <div className="flex ">
         <Sidebar />

@@ -8,6 +8,7 @@ const SearchResultContainer = () => {
   const [searchResults, setSearchResults] = useState();
   const [searchParam] = useSearchParams();
   const query = searchParam.get("search_query");
+ 
 
   useEffect(() => {
     const SEARCH_RESULT_API =

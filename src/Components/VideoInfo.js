@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { VIDEO_INFO_URL, CHANNEL_INFO_URL } from "../utils/constants";
-import { useSearchParams } from "react-router-dom";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { TiArrowForwardOutline } from "react-icons/ti";
 import { BsThreeDots } from "react-icons/bs";
@@ -8,13 +7,11 @@ import { useSelector } from "react-redux";
 import { handleViews } from "../utils/helper";
 import { showVideoPublishDate } from "../utils/helper";
 
-const VideoInfo = () => {
+const VideoInfo = ({ videoId }) => {
   const [videoInfo, setVideoInfo] = useState();
   const [channelInfo, setChannelInfo] = useState();
   const [channelId, setChannelId] = useState();
   const [showDesc, setShowDesc] = useState(false);
-  const [searchParam] = useSearchParams();
-  const videoId = searchParam.get("v");
 
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
@@ -32,7 +29,7 @@ const VideoInfo = () => {
     const data = await fetch(VIDEO_INFO_URL + videoId);
     const json = await data.json();
     setVideoInfo(json);
-   
+
     setChannelId(json?.items?.[0]?.snippet?.channelId);
   };
 
@@ -43,13 +40,9 @@ const VideoInfo = () => {
     setChannelInfo(json);
   };
 
-  const handleDescription = () => {
-    setShowDesc(!showDesc);
-  };
-
   const description = videoInfo?.items?.[0]?.snippet?.description || "";
 
-  if (!videoId && !channelId) return null;
+  if (!videoInfo && !channelInfo) return null;
 
   return (
     <div className="flex">
@@ -131,16 +124,16 @@ const VideoInfo = () => {
             <p className="font-semibold">
               {showVideoPublishDate(
                 videoInfo?.items?.[0]?.snippet?.publishedAt
-              )} 
+              )}
             </p>
           </div>
 
           <div className=" whitespace-pre-line ">
-            <p>{showDesc ? description : description.slice(0, 70)}</p>
+            <p>{showDesc ? description : description.slice(0, 100)}</p>
             <h2
               className="cursor-pointer mt-1 font-semibold"
               onClick={() => {
-                handleDescription();
+                setShowDesc(!showDesc);
               }}
             >
               {showDesc ? "Show less" : " ...more"}

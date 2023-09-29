@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../utils/Redux/appSlice";
-import CommenstsContainer from "../Components/CommentsContainer"
+import CommenstsContainer from "../Components/CommentsContainer";
 import VideoInfo from "./VideoInfo";
 import LiveChat from "./LiveChat";
 
@@ -38,8 +38,8 @@ const WatchPage = () => {
           <LiveChat />
         </div>
       </div>
-      <VideoInfo />
-      <CommenstsContainer videoId={videoId}/>
+      <VideoInfo videoId={videoId} />
+      <CommenstsContainer videoId={videoId} />
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full h-14 my-1 flex justify-between items-center  bg-white">
+    <div className="w-full h-14 mb-1 flex justify-between items-center  ">
       <div className="flex justify-center items-center my-1">
         <div
           className="w-10 h-10  hover:bg-gray-200 rounded-full  mx-3 cursor-pointer flex justify-center items-center"

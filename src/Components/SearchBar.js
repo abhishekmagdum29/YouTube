@@ -3,19 +3,29 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { addCacheResult } from "../utils/Redux/cacheSlice";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [clearQuery, setClearQuery] = useState(true);
+  const [clearQuery, setClearQuery] = useState(false);
+
+  const searchCache = useSelector((store) => store.cache);
+
+  const dispatch = useDispatch();
 
   const nav = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchSuggestion();
-    }, 150);
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestion();
+      }
+    }, 180);
 
     return () => {
       clearTimeout(timer);
@@ -28,6 +38,17 @@ const SearchBar = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
+
+    dispatch(
+      addCacheResult({
+        [searchQuery]: json[1],
+      })
+    );
+  };
+
+  const handleSuggestion = () => {
+    nav(`/results?search_query= ${searchQuery}`);
+    setShowSuggestions(false);
   };
 
   return (
@@ -48,30 +69,32 @@ const SearchBar = () => {
               value={searchQuery}
               type="text"
               placeholder="Search"
-              className=" w-full h-full rounded-l-full px-12 outline-none border text-lg  focus:outline-none focus:border-sky-400 shadow-md"
+              className=" w-full h-full rounded-l-full px-12 outline-none border text-lg  focus:outline-none focus:border-sky-400 shadow-sm"
             />
-            {searchQuery.length > 0 && clearQuery && (
+
+            {(searchQuery.length > 0 || clearQuery) && (
               <div className="absolute left-[510px] flex items-center justify-center w-8 h-8 hover:bg-gray-200 cursor-pointer rounded-full">
                 <RxCross1
-                  className="   font-light text-xl cursor-pointer"
+                  className="font-light text-xl cursor-pointer"
                   onClick={() => {
-                    setSearchQuery(" ");
-                    setClearQuery(false);
+                    setSearchQuery("");
+                    setClearQuery(!clearQuery);
                   }}
                 />
               </div>
             )}
           </div>
 
-          {searchQuery ? (
-            <Link to={`/results?search_query= ${searchQuery}`}>
-              <div className="w-16 h-10 border flex items-center justify-center rounded-r-full shadow-md bg-gray-50 hover:bg-gray-100">
-                <CiSearch className="text-2xl cursor-pointer" />
-              </div>
-            </Link>
+          {searchQuery.length > 0 ? (
+            <div
+              className="w-16 h-10 border flex items-center justify-center rounded-r-full shadow-sm bg-gray-50 hover:bg-gray-100 cursor-pointer "
+              onClick={() => handleSuggestion()}
+            >
+              <CiSearch className="text-2xl " />
+            </div>
           ) : (
-            <div className="w-16 h-10 border flex items-center justify-center rounded-r-full shadow-md bg-gray-50 hover:bg-gray-100">
-              <CiSearch className="text-2xl cursor-pointer" />
+            <div className="w-16 h-10 border flex items-center justify-center rounded-r-full shadow-sm bg-gray-50 hover:bg-gray-100 cursor-pointer">
+              <CiSearch className="text-2xl " />
             </div>
           )}
         </form>
@@ -83,7 +106,7 @@ const SearchBar = () => {
                 {suggestions.map((suggestion) => {
                   return (
                     <Link
-                      to={`/results?search_query= ${searchQuery}`}
+                      to={`/results?search_query= ${suggestion}`}
                       key={suggestion}
                       onClick={() => setShowSuggestions(false)}
                     >

@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import VideoCard2 from "./VideoCard2";
 import { list } from "../utils/constants";
 
-
 const VideoContainer = () => {
   const videoList = useSelector((store) => store.app.videoList);
 
@@ -23,14 +22,14 @@ const VideoContainer = () => {
   const getVideos = async () => {
     const response = await fetch(YOUTUBE_VIDEO_API);
     const json = await response.json();
-    console.log(json);
+
     dispatch(addVideos(json.items));
   };
 
   if (!videoList.length) return <Shimmer />;
 
   return (
-    <>
+    <div>
       <ButtonList list={list} />
       <div className="flex flex-wrap ml-4 ">
         {videoList.map((video) =>
@@ -39,18 +38,16 @@ const VideoContainer = () => {
               key={video?.id?.videoId}
               to={"/watch?v=" + video?.id?.videoId}
             >
-           
               <VideoCard2 info={video} />
             </Link>
           ) : (
             <Link key={video?.id} to={"/watch?v=" + video?.id}>
-              
               <VideoCard info={video} />
             </Link>
           )
         )}
       </div>
-    </>
+    </div>
   );
 };
 

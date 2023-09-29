@@ -10,7 +10,7 @@ export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const SEARCH_TEXT_API =
-  "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&type=video&key=" +
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=" +
   GOOGLE_API_KEY +
   "&q=";
 
@@ -32,16 +32,16 @@ export const list = [
   "All",
   "Gaming",
   "Music",
-  "Live",
+  "Sports",
   "Nature",
   "trending",
   "Cricket",
   "Movies",
   "Gagdets",
   "Javascript",
-  "Coding",
-  "Space",
   "Podcasts",
   "Technology",
+  "Coding",
+  "Space",
   "Science",
 ];
